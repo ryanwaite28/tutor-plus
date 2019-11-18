@@ -50,6 +50,7 @@ export const Users = sequelize.define('users', {
   account_verified:        { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
   certified:               { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
   online:                  { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
+  zoomlink:                { type: Sequelize.TEXT, allowNull: true, defaultValue: '' },
   date_created:            { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   uuid:                    { type: Sequelize.STRING, unique: true, defaultValue: Sequelize.UUIDV1 }
 }, { freezeTableName: true, underscored: true, indexes: [{ unique: true, fields: ['email', 'username', 'uuid'] }] });
@@ -310,6 +311,36 @@ export const AccountsReported = sequelize.define('accounts_reported', {
   date_created:          { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   uuid:                  { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV1 }
 }, { freezeTableName: true, underscored: true });
+
+export const Session = sequelize.define('session', {
+  host_id:             { type: Sequelize.INTEGER, allowNull: false, references: { model: Users, key: 'id' } },
+  title:               { type: Sequelize.STRING(250), allowNull: false },
+  type:                { type: Sequelize.STRING(250), allowNull: false },
+  body:                { type: Sequelize.TEXT, allowNull: false },
+  link:                { type: Sequelize.TEXT, allowNull: false },
+  tags:                { type: Sequelize.TEXT, allowNull: true },
+  is_private:          { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
+  date_created:        { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+  uuid:                { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV1 }
+}, { freezeTableName: true, underscored: true });
+
+export const SessionMembers = sequelize.define('session_members', {
+  session_id:          { type: Sequelize.INTEGER, allowNull: false, references: { model: Session, key: 'id' } },
+  user_id:             { type: Sequelize.INTEGER, allowNull: false, references: { model: Users, key: 'id' } },
+  date_created:        { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+  uuid:                { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV1 }
+}, { freezeTableName: true, underscored: true });
+
+export const SessionRequests = sequelize.define('session_requests', {
+  session_id:          { type: Sequelize.INTEGER, allowNull: false, references: { model: Session, key: 'id' } },
+  from_id:             { type: Sequelize.INTEGER, allowNull: false, references: { model: Users, key: 'id' } },
+  to_id:               { type: Sequelize.INTEGER, allowNull: false, references: { model: Users, key: 'id' } },
+  message:             { type: Sequelize.STRING(250), allowNull: false },
+  date_created:        { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+  uuid:                { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV1 }
+}, { freezeTableName: true, underscored: true });
+
+
 
 sequelize.sync({ force: false })
   .then(() => { console.log('Database Initialized! ENV: ' + db_env); })

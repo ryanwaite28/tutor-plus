@@ -40,7 +40,10 @@ export enum Notification_Target_Types {
 export enum Content_Types {
   LIVE_SESSION = 'LIVE_SESSION',
   TUTORIAL = 'TUTORIAL',
+  QNA = 'QNA',
 }
+
+
 
 /* --- */
 
