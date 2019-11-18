@@ -1,0 +1,3 @@
+node modules:
+---
+npm install --save @types/bluebird @types/client-sessions @types/cors @types/express @types/express-fileupload @types/nunjucks @types/node @types/sequelize @types/socket.io @types/validator autoprefixer bcrypt-nodejs body-parser client-sessions cors express express-fileupload express-device nodemon sequelize nunjucks socket.io sqlite3 tslint typescript uuid @sendgrid/mail cloudinary pg pg-hstore gulp

@@ -1,0 +1,4 @@
+# ignore files/folders
+
+node_modules/
+.env
