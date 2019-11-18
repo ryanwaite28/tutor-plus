@@ -320,6 +320,7 @@ export const Session = sequelize.define('session', {
   link:                { type: Sequelize.TEXT, allowNull: false },
   tags:                { type: Sequelize.TEXT, allowNull: true },
   is_private:          { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
+  session_date:        { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   date_created:        { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   uuid:                { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV1 }
 }, { freezeTableName: true, underscored: true });
