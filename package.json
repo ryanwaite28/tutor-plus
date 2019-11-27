@@ -6,10 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "tscWatch": "tsc -w",
+    "tscwatch": "tsc -w",
     "dev": "npm run tsc && nodemon dist/app.js",
-    "devwatch": "npm run tscWatch && nodemon dist/app.js",
+    "devwatch": "npm run tscwatch && nodemon dist/app.js",
     "start": "npm run tsc && nodemon dist/app.js"
+  },
+  "nodemonConfig": {
+    "ext": "js, css, json, html"
   },
   "author": "Ryan M. Waite",
   "license": "ISC",
@@ -28,6 +31,7 @@
     "autoprefixer": "^9.7.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
+    "bulma": "^0.8.0",
     "client-sessions": "^0.8.0",
     "cloudinary": "^1.17.0",
     "cors": "^2.8.5",

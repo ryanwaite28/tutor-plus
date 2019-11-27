@@ -1,9 +1,7 @@
-import { Request, Response } from 'express';
 import * as express from 'express';
 
 import { PagesController } from './_pages-controller/pages.controller';
 import { UsersController } from './users/controller';
-
 
 
 

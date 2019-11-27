@@ -1,0 +1,41 @@
+/* Tags */
+
+body {
+  min-height: 100vh;
+}
+
+/* ID */
+
+nav#app-nav {
+  border-bottom: 1px solid lightgrey;
+}
+
+footer#app-footer {
+  border-top: 1px solid lightgrey;
+  margin-top: 20px;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Class */
+
+.block {
+  display: block;
+}
+
+.middlr {
+  display: block;
+  margin: auto;
+}
+
+.box-1000 {
+  width: 1000px;
+  max-width: 100%;
+}
+
+.space-top-50 {
+  margin-top: 50px;
+}

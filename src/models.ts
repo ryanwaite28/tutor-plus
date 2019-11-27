@@ -43,7 +43,7 @@ export const Users = sequelize.define('users', {
   link_text:               { type: Sequelize.STRING(250), allowNull: false, defaultValue: '' },
   link_href:               { type: Sequelize.STRING(250), allowNull: false, defaultValue: '' },
   public:                  { type: Sequelize.BOOLEAN, allowNull: true, defaultValue: true },
-  icon_link:               { type: Sequelize.STRING(500), allowNull: true, defaultValue: '/_bin/img/anon.png' },
+  icon_link:               { type: Sequelize.STRING(500), allowNull: true, defaultValue: '/img/anon.png' },
   icon_id:                 { type: Sequelize.STRING(500), allowNull: true, defaultValue: '' },
   location:                { type: Sequelize.STRING(500), allowNull: true, defaultValue: '' },
   subjects:                { type: Sequelize.TEXT, allowNull: true, defaultValue: '' },

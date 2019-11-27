@@ -10,3 +10,17 @@ export async function WelcomePage(
 ) {
   return response.render(pages.welcome, {});
 }
+
+export async function SigninPage(
+  request: Request,
+  response: Response,
+) {
+  return response.render(pages.signin, {});
+}
+
+export async function SignupPage(
+  request: Request,
+  response: Response,
+) {
+  return response.render(pages.signup, {});
+}

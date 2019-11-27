@@ -27,6 +27,7 @@ export const pages: { [key: string]: string; } = {
   welcome: 'welcome.html',
   signup: 'signup.html',
   signin: 'signin.html',
+  userPage: 'user-page.html',
 };
 
 export enum Event_Types {
