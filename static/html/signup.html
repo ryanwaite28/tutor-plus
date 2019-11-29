@@ -4,15 +4,137 @@
     {% include 'includes/deps.html' %}
 
     <title>Sign Up</title>
+
+    <!-- Services -->
+    <script src="/js/services/client.service.js"></script>
+    <script src="/js/services/user.service.js"></script>
+
+    <!-- Controller -->
+    <script src="/js/controllers/signup.controller.js"></script>
   </head>
-  <body>
+  <body ng-app="tutorPlusApp" ng-controller="signupCtrl">
 
     {% include 'includes/navbar.html' %}
 
-    <main>
+    <main class="container space-top-50">
+      <form name="signupForm" id="signup-form" ng-submit="$ctrl.signUp(signupForm)">
+        <div class="field">
+          <label class="label">Displayname</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="text"
+              name="displayname"
+              ng-model="displayname"
+              ng-class="{
+                'is-danger':  signupForm.displayname.$touched && signupForm.displayname.$invalid,
+                'is-success':  signupForm.displayname.$touched && signupForm.displayname.$valid
+              }"
+              required
+            />
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </div>
+        </div>
+  
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="text"
+              name="username"
+              ng-model="username"
+              ng-class="{
+                'is-danger':  signupForm.username.$touched && signupForm.username.$invalid,
+                'is-success':  signupForm.username.$touched && signupForm.username.$valid
+              }"
+              required
+            />
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </div>
+        </div>
+  
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="text"
+              name="email"
+              ng-model="email"
+              ng-class="{
+                'is-danger':  signupForm.email.$touched && signupForm.email.$invalid,
+                'is-success':  signupForm.email.$touched && signupForm.email.$valid
+              }"
+              required
+            />
+            <span class="icon is-small is-left">
+              <i class="fa fa-envelope"></i>
+            </span>
+          </div>
+        </div>
 
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="password"
+              name="password"
+              ng-model="password"
+              ng-class="{
+                'is-danger':  signupForm.password.$touched && signupForm.password.$invalid,
+                'is-success':  signupForm.password.$touched && signupForm.password.$valid
+              }"
+              required
+            />
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Confirm Password</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="password"
+              name="confirmPassword"
+              ng-model="confirmPassword"
+              ng-class="{
+                'is-danger':  signupForm.confirmPassword.$touched && signupForm.confirmPassword.$invalid,
+                'is-success':  signupForm.confirmPassword.$touched && signupForm.confirmPassword.$valid
+              }"
+              required
+            />
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </div>
+        </div>
+
+        <br />
+  
+        <div class="field is-grouped">
+          <div class="control">
+            <button
+              type="submit"
+              class="button is-link"
+              ng-disabled="signupForm.$invalid || requestInProgress"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
     </main>
 
+    {% include 'includes/notifications-box.html' %}
     {% include 'includes/footer.html' %}
     
   </body>

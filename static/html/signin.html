@@ -4,15 +4,77 @@
     {% include 'includes/deps.html' %}
 
     <title>Sign In</title>
+
+    <!-- Services -->
+    <script src="/js/services/client.service.js"></script>
+    <script src="/js/services/user.service.js"></script>
+
+    <!-- Controller -->
+    <script src="/js/controllers/signin.controller.js"></script>
   </head>
-  <body>
+  <body ng-app="tutorPlusApp" ng-controller="signinCtrl">
 
     {% include 'includes/navbar.html' %}
 
-    <main>
+    <main class="container space-top-50">
+      <form name="signinForm" id="signin-form" ng-submit="$ctrl.signIn(signinForm)">
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="text"
+              name="email"
+              ng-model="email"
+              ng-class="{
+                'is-danger':  signinForm.email.$touched && signinForm.email.$invalid,
+                'is-success':  signinForm.email.$touched && signinForm.email.$valid
+              }"
+              required
+            />
+            <span class="icon is-small is-left">
+              <i class="fa fa-envelope"></i>
+            </span>
+          </div>
+        </div>
 
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              class="input"
+              type="password"
+              name="password"
+              ng-model="password"
+              ng-class="{
+                'is-danger':  signinForm.password.$touched && signinForm.password.$invalid,
+                'is-success':  signinForm.password.$touched && signinForm.password.$valid
+              }"
+              required
+            />
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </div>
+        </div>
+
+        <br />
+  
+        <div class="field is-grouped">
+          <div class="control">
+            <button
+              type="submit"
+              class="button is-link"
+              ng-disabled="signinForm.$invalid || requestInProgress"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
     </main>
 
+    {% include 'includes/notifications-box.html' %}
     {% include 'includes/footer.html' %}
     
   </body>
