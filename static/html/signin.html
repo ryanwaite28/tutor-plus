@@ -17,9 +17,9 @@
     {% include 'includes/navbar.html' %}
 
     <main class="container space-top-50">
-      <form name="signinForm" id="signin-form" ng-submit="$ctrl.signIn(signinForm)">
+      <form name="signinForm" id="signin-form" ng-submit="$ctrl.signIn(signinForm)" novalidate>
         <div class="field">
-          <label class="label">Email</label>
+          <label class="label">Username or Email</label>
           <div class="control has-icons-left has-icons-right">
             <input
               class="input"
@@ -36,6 +36,12 @@
               <i class="fa fa-envelope"></i>
             </span>
           </div>
+          <p 
+            ng-if="signinForm.email.$touched && signinForm.email.$error.required"
+            class="help is-danger"
+          >
+            Username/Email is required
+          </p>
         </div>
 
         <div class="field">
@@ -56,6 +62,12 @@
               <i class="fa fa-lock"></i>
             </span>
           </div>
+          <p 
+            ng-if="signinForm.password.$touched && signinForm.password.$error.required"
+            class="help is-danger"
+          >
+            Password is required
+          </p>
         </div>
 
         <br />
