@@ -9,11 +9,15 @@ App.service('getService', class GetService {
     this.clientService = clientService;
   }
 
-  checkSession(data) {
-    return this.clientService.sendRequest('/users/check_session', 'GET', data, null);
+  checkSession() {
+    return this.clientService.sendRequest('/users/check_session', 'GET', null, null);
   }
 
-  signOut(data) {
-    return this.clientService.sendRequest('/sign_out', 'GET', data, null);
+  signOut() {
+    return this.clientService.sendRequest('/sign_out', 'GET', null, null);
+  }
+
+  getUserById(id) {
+    return this.clientService.sendRequest(`/users/${id}`, 'GET', null, null);
   }
 });

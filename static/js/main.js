@@ -1,5 +1,10 @@
 const App = angular.module('tutorPlusApp', []);
 
+App.config(['$interpolateProvider', ($interpolateProvider) => {
+	$interpolateProvider.startSymbol('((');
+	$interpolateProvider.endSymbol('))');
+}]);
+
 $(document).ready(function() {
 
   // Check for click events on the navbar burger icon

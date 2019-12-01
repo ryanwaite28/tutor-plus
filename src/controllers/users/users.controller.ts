@@ -16,6 +16,7 @@ export const UsersController: express.Router = express.Router();
 
 UsersController.get('/check_session', GET.check_session);
 UsersController.get('/sign_out', GET.sign_out);
+UsersController.get('/:id', GET.getUserById);
 
 
 /** POST routes */

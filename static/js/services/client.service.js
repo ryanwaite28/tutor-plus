@@ -20,6 +20,7 @@ App.service('clientService', class ClientService {
       }
     }
 
-    return fetch(route, obj).then((resp) => resp.json());
+    const api = `/api` + route;
+    return fetch(api, obj).then((resp) => resp.json());
   }
 });

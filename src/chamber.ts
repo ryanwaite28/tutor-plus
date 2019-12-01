@@ -23,7 +23,7 @@ export const paths: { [key: string]: string; } = {
 };
 
 export const pages: { [key: string]: string; } = {
-  _error: 'error.html',
+  _error: '_error.html',
   welcome: 'welcome.html',
   signup: 'signup.html',
   signin: 'signin.html',

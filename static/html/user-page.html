@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'includes/deps.html' %}
+
+    <title>User Page | {{ user.displayname }}</title>
+
+    <!-- Services -->
+    <script src="/js/services/user.service.js"></script>
+
+    <!-- Components -->
+    <script src="/js/components/userpage-card.component.js"></script>
+
+    <!-- Controller -->
+    <script src="/js/controllers/userpage.controller.js"></script>
+  </head>
+  <body ng-app="tutorPlusApp" ng-controller="userpageCtrl">
+
+    {% include 'includes/navbar.html' %}
+
+    <main class="container space-top-50">
+      <div class="columns">
+        <div class="column is-one-thirds">
+          <userpage-card
+            ng-if="$ctrl.user"
+            you="$ctrl.you"
+            user="$ctrl.user"
+          ></userpage-card>
+        </div>
+        <div class="column is-two-thirds">
+          s
+        </div>
+      </div>
+    </main>
+
+    {% include 'includes/notifications-box.html' %}
+    {% include 'includes/footer.html' %}
+    
+  </body>
+</html>

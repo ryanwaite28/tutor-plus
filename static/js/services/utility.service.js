@@ -42,4 +42,8 @@ App.service('utilityService', class UtilityService {
     const formData = new FormData(formElement);
     return formData;
   }
+
+  setPageTitle(title) {
+    
+  }
 });

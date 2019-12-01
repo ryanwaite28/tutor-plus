@@ -24,12 +24,21 @@
 
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons">
+        <div class="buttons" ng-if="!$ctrl.user">
           <a class="button is-primary" href="/signup">
             <strong>Sign up</strong>
           </a>
           <a class="button is-light"  href="/signin">
             Sign in
+          </a>
+        </div>
+
+        <div class="buttons" ng-if="$ctrl.user">
+          <a class="button is-primary" href="/users/(( $ctrl.you.id ))">
+            <strong>Home</strong>
+          </a>
+          <a class="button is-light"  href="/users/sign_out">
+            Sign Out
           </a>
         </div>
       </div>
