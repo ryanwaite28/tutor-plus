@@ -10,25 +10,33 @@
 
     <!-- Components -->
     <script src="/js/components/userpage-card.component.js"></script>
+    <script src="/js/components/userpage-settings.component.js"></script>
 
     <!-- Controller -->
     <script src="/js/controllers/userpage.controller.js"></script>
   </head>
   <body ng-app="tutorPlusApp" ng-controller="userpageCtrl">
 
-    {% include 'includes/navbar.html' %}
+    <app-navbar you="you"></app-navbar>
 
     <main class="container space-top-50">
       <div class="columns">
         <div class="column is-one-thirds">
-          <userpage-card
-            ng-if="$ctrl.user"
-            you="$ctrl.you"
-            user="$ctrl.user"
+          <userpage-card ng-if="user"
+            you="you"
+            user="user"
+            set-user-page-view="$ctrl.setUserPageView(view)"
           ></userpage-card>
         </div>
-        <div class="column is-two-thirds">
-          s
+        <div class="column is-two-thirds" ng-switch="currentView">
+          <userpage-settings ng-switch-when="settings"
+            you="you"
+            on-updated="$ctrl.settingsUpdated(user)"
+          ></userpage-settings>
+
+          <div class="box" ng-switch-default>
+            <h1 class="is-size-3">Home</h1>
+          </div>
         </div>
       </div>
     </main>

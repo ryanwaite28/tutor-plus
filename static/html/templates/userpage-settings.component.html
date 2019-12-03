@@ -1,0 +1,304 @@
+<section>
+  <div class="box">
+    <h1 class="is-size-3">Settings</h1>
+    <hr />
+    <form name="form" id="settings-form" ng-submit="$ctrl.updateSettings(form)" novalidate>
+      <div class="field">
+        <label class="label">Displayname</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            name="displayname"
+            ng-model="$ctrl.youCopy.displayname"
+            ng-class="{
+              'is-danger':  form.displayname.$touched && form.displayname.$invalid,
+              'is-success':  form.displayname.$touched && form.displayname.$valid
+            }"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+        </div>
+        <p 
+          ng-if="form.displayname.$touched && form.displayname.$error.required"
+          class="help is-danger"
+        >
+          Displayname is required
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            name="username"
+            ng-model="$ctrl.youCopy.username"
+            ng-class="{
+              'is-danger':  form.username.$touched && form.username.$invalid,
+              'is-success':  form.username.$touched && form.username.$valid
+            }"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+        </div>
+        <p 
+          ng-if="form.username.$touched && form.username.$error.required"
+          class="help is-danger"
+        >
+          Username is required
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            name="email"
+            ng-model="$ctrl.youCopy.email"
+            ng-class="{
+              'is-danger':  form.email.$touched && form.email.$invalid,
+              'is-success':  form.email.$touched && form.email.$valid
+            }"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+        </div>
+        <p 
+          ng-if="form.email.$touched && form.email.$error.required"
+          class="help is-danger"
+        >
+          Email is required
+        </p>
+      </div>
+
+      <hr/>
+
+      <div class="field">
+        <label class="label">Bio</label>
+        <span><small class="">(( form.bio.$modelValue.length ))/250</small></span>
+        <div class="control has-icons-left">
+          <textarea
+            class="textarea"
+            type="text"
+            name="bio"
+            ng-model="$ctrl.youCopy.bio"
+            ng-class="{
+              'is-danger':  form.bio.$modelValue.length > 250,
+            }"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Tags (separate by comma)</label>
+        <span><small class="">(( form.tags.$modelValue.length ))/250</small></span>
+        <div class="control has-icons-left">
+          <textarea
+            class="textarea"
+            type="text"
+            name="tags"
+            ng-model="$ctrl.youCopy.tags"
+            ng-class="{
+              'is-danger':  form.tags.$modelValue.length > 250,
+            }"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Subjects (separate by comma)</label>
+        <span><small class="">(( form.subjects.$modelValue.length ))/250</small></span>
+        <div class="control has-icons-left">
+          <textarea
+            class="textarea"
+            type="text"
+            name="subjects"
+            ng-model="$ctrl.youCopy.subjects"
+            ng-class="{
+              'is-danger':  form.subjects.$modelValue.length > 250,
+            }"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Phone</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            name="phone"
+            ng-model="$ctrl.youCopy.phone"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-phone"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Location</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            name="location"
+            ng-model="$ctrl.youCopy.location"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-globe"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Link Label</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            name="link_text"
+            ng-model="$ctrl.youCopy.link_text"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-external-link"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Link URL</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            name="link_href"
+            ng-model="$ctrl.youCopy.link_href"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-external-link"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Zoom Link</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            name="zoomlink"
+            ng-model="$ctrl.youCopy.zoomlink"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-link"></i>
+          </span>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="field">
+        <label class="label">Icon</label>
+        <div class="file has-name">
+          <label class="file-label">
+            <input class="" id="icon-file-input" type="file" name="icon" />
+            <button type="button" ng-click="$ctrl.clearFileInput('icon-file-input')">Clear</button>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Wallpaper</label>
+        <div class="file has-name">
+          <label class="file-label">
+            <input class="" id="wallpaper-file-input" type="file" name="wallpaper" />
+            <button type="button" ng-click="$ctrl.clearFileInput('wallpaper-file-input')">Clear</button>
+          </label>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="field">
+        <label class="label">Old Password</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="password"
+            name="oldpassword"
+            ng-model="$ctrl.youCopy.oldpassword"
+            ng-class="{
+              'is-danger':  form.oldpassword.$touched && form.oldpassword.$invalid,
+              'is-success':  form.oldpassword.$touched && form.oldpassword.$valid
+            }"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">New Password</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="password"
+            name="password"
+            ng-model="$ctrl.youCopy.password"
+            ng-class="{
+              'is-danger':  form.password.$touched && form.password.$invalid,
+              'is-success':  form.password.$touched && form.password.$valid
+            }"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Confirm Password</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="password"
+            name="confirmPassword"
+            ng-model="confirmPassword"
+            ng-class="{
+              'is-danger':  form.confirmPassword.$touched && form.confirmPassword.$invalid,
+              'is-success':  form.confirmPassword.$touched && form.confirmPassword.$valid
+            }"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button
+            type="submit"
+            class="button is-link"
+            ng-disabled="$ctrl.requestInProgress"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

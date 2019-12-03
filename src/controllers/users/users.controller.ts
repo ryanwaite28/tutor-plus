@@ -9,6 +9,8 @@ import * as PUT from './methods/put';
 // @ts-ignore
 import * as DELETE from './methods/delete';
 
+import { GetSessionRequired } from '../../chamber';
+
 
 export const UsersController: express.Router = express.Router();
 
@@ -26,6 +28,7 @@ UsersController.post('/', POST.sign_up);
 /** PUT routes */
 
 UsersController.put('/', PUT.sign_in);
+UsersController.put('/settings', GetSessionRequired, PUT.update_settings);
 
 /** DELETE routes */
 

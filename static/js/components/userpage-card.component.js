@@ -3,14 +3,19 @@ App.component('userpageCard', {
   bindings: {
     you: '<',
     user: '<',
+    setUserPageView: '&',
   },
-  controller: class PersonComponent {
+  controller: class UserpageCardComponent {
     static $inject = [];
 
     constructor() {}
 
     $onInit() {
       console.log(this);
+    }
+
+    setPageView(view) {
+      this.setUserPageView({ view });
     }
   }
 });

@@ -158,8 +158,7 @@ export function generateRandomSpecialString(num = 1) {
   return str;
 }
 
-export function PageSessionRequired(request: Request, response: Response, next: NextFunction) {
-  console.log('auth called');
+export function GetSessionRequired(request: Request, response: Response, next: NextFunction) {
   (async () => {
     if (!(<any> request).session.id) {
       return (<any> response).status(401).json({
@@ -172,11 +171,10 @@ export function PageSessionRequired(request: Request, response: Response, next: 
   })();
 }
 
-export function GetSessionRequired(request: Request, response: Response, next: NextFunction) {
-  console.log('auth called');
+export function PageSessionRequired(request: Request, response: Response, next: NextFunction) {
   (async () => {
     if (!(<any> request).session.id) {
-      return response.render(pages.error, {});
+      return response.render(pages.error, { message: `No user logged in.` });
     } else {
       return next();
     }

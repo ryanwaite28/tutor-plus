@@ -1,5 +1,9 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import * as express from 'express';
 import * as cors from 'cors';
+import * as cookie_parser from 'cookie-parser';
 import * as socket_io from 'socket.io';
 import * as http from 'http';
 import * as client_sessions from 'client-sessions';
@@ -24,6 +28,7 @@ const app: express.Application = express();
 
 app.use(express_fileupload({ safeFileNames: true, preserveExtension: true }));
 app.use(express_device.capture());
+app.use(cookie_parser());
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(express.static(paths.static));
@@ -42,8 +47,9 @@ templateEngine.installExpressApp(app);
 
 const server = http.createServer(app);
 const io = socket_io(server);
+
 io.on('connection', (socket) => {
-  console.log('new socket:', socket);
+  console.log('new socket!');
 });
 
 app.use((request, response, next) => {

@@ -1,19 +1,32 @@
 App.controller('userpageCtrl', [
   '$scope',
+  'stateService',
   'getService',
   'putService',
   'utilityService',
   'userService',
-  class SigninController {
-    constructor($scope, getService, putService, utilityService, userService) {
+  'socketService',
+  class UserpageController {
+    constructor(
+      $scope,
+      stateService,
+      getService,
+      putService,
+      utilityService,
+      userService,
+      socketService,
+    ) {
       $scope.$ctrl = this;
       this.$scope = $scope;
 
+      this.stateService = stateService;
       this.getService = getService;
       this.putService = putService;
       this.utilityService = utilityService;
       this.userService = userService;
+      this.socketService = socketService;
 
+      console.log(this);
       this.init();
     }
 
@@ -27,10 +40,21 @@ App.controller('userpageCtrl', [
       ];
 
       Promise.all(promiseList).then((values) => {
-        this.you = values[0].user;
-        this.user = values[1].user;
+        this.$scope.you = values[0].user;
+        this.$scope.user = values[1].user;
         this.$scope.$apply();
       });
+    }
+
+    setUserPageView(view) {
+      this.$scope.currentView = view;
+    }
+
+    settingsUpdated(user) {
+      Object.assign(this.stateService.session.user, user);
+      this.$scope.you = this.stateService.session.user;
+      this.$scope.user = this.stateService.session.user;
+      this.$scope.$apply();
     }
   }
 ]);

@@ -78,7 +78,7 @@ export async function sign_up(
 
   password = bcrypt.hashSync(password);
   const new_user = await (<any> Users).create({ displayname, username, email, password });
-  const user = (<any> new_user).dataValues;
+  const user = (<any> new_user).get({ plain: true });
   (<any> request).session.id = Chamber.uniqueValue();
   (<any> request).session.you = { ...user };
   (<any> request).session.youModel = new_user;

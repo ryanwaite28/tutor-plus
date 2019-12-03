@@ -8,6 +8,7 @@ App.controller('signupCtrl', [
     constructor($scope, getService, postService, utilityService, userService) {
       $scope.$ctrl = this;
       this.$scope = $scope;
+
       this.getService = getService;
       this.postService = postService;
       this.utilityService = utilityService;

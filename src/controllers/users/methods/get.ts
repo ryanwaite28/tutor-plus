@@ -28,13 +28,11 @@ export function sign_out(
   response: Response,
 ) {
   (<any> request).session.reset();
-  // return response.status(200).json({
-  //   online: false,
-  //   successful: true,
-  //   message: 'Signed out successfully!'
-  // });
-  console.log(request);
-  return response.redirect('/signin');
+  return response.status(200).json({
+    online: false,
+    successful: true,
+    message: 'Signed out successfully!'
+  });
 }
 
 export async function getUserById(

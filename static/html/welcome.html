@@ -4,10 +4,16 @@
     {% include 'includes/deps.html' %}
 
     <title>Welcome</title>
-  </head>
-  <body>
 
-    {% include 'includes/navbar.html' %}
+    <!-- Services -->
+    <script src="/js/services/user.service.js"></script>
+
+    <!-- Controller -->
+    <script src="/js/controllers/welcome.controller.js"></script>
+  </head>
+  <body ng-app="tutorPlusApp" ng-controller="welcomeCtrl">
+
+    <app-navbar you="you"></app-navbar>
 
     <main>
       <header id="welcome-header">

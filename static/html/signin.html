@@ -13,7 +13,7 @@
   </head>
   <body ng-app="tutorPlusApp" ng-controller="signinCtrl">
 
-    {% include 'includes/navbar.html' %}
+    <app-navbar you="you"></app-navbar>
 
     <main class="container space-top-50">
       <form name="signinForm" id="signin-form" ng-submit="$ctrl.signIn(signinForm)" novalidate>
