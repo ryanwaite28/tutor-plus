@@ -22,14 +22,32 @@
         <p><strong>Tags</strong>: (( $ctrl.user.tags ))</p>
         <p><strong>Subjects</strong>: (( $ctrl.user.subjects ))</p>
       </div>
+      <div>
+        <p class="buttons">
+          <button ng-if="$ctrl.user.id !== $ctrl.you.id" class="button is-small" ng-click="$ctrl.toggleFollow()">
+            <span class="icon is-small">
+              <i class="fa" ng-class="{ 'fa-star': $ctrl.follows, 'color-yellow': $ctrl.follows, 'fa-star-o': !$ctrl.follows }"></i>
+            </span>
+            <span>{{ $ctrl.follows ? 'Following' : 'Follow' }}</span>
+          </button>
+        </p>
+      </div>
     </div>
   </div>
 
   <br/>
 
-  <div class="box" ng-if="$ctrl.you && $ctrl.user.id === $ctrl.you.id">
+  <div class="box">
     <ul class="menu-list">
       <li><a ng-click="$ctrl.setPageView(null)">Home</a></li>
+      <li><a ng-click="$ctrl.setPageView('following')">Following</a></li>
+      <li><a ng-click="$ctrl.setPageView('followers')">Followers</a></li>
+      <li><a ng-click="$ctrl.setPageView('reviews')">Reviews</a></li>
+    </ul>
+  </div>
+
+  <div class="box" ng-if="$ctrl.you && $ctrl.user.id === $ctrl.you.id">
+    <ul class="menu-list">
       <li><a ng-click="$ctrl.setPageView('settings')">Settings</a></li>
     </ul>
   </div>

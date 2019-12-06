@@ -10,12 +10,14 @@ export const APP_SECRET: string = 'f6evg7h8j9rrnhcw8e76@$#%RFG&*BF^&G*O(Pxjt678y
 export const specialCaracters: string[] = ['!', '@', '#', '$', '%', '&', '+', ')', ']', '}', ':', ';', '?'];
 export const allowed_images: string[] = ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG'];
 
+export const client_dir: string = path.resolve(__dirname, './client');
 export const static_dir: string = path.resolve(__dirname, '../static');
 export const img_dir: string = path.join(static_dir, 'img/');
 export const css_dir: string = path.join(static_dir, 'css/');
 export const html_dir: string = path.join(static_dir, 'html/');
 
 export const paths: { [key: string]: string; } = {
+  client: client_dir,
   static: static_dir,
   img: img_dir,
   css: css_dir,
@@ -30,11 +32,18 @@ export const pages: { [key: string]: string; } = {
   userPage: 'user-page.html',
 };
 
-export enum Event_Types {
-  LIKE = 'LIKE',
+export enum EventTypes {
+  USER_PROFILE_UPDATED = 'USER_PROFILE_UPDATED',
+  NEW_NOTIFICATION = 'NEW_NOTIFICATION',
 }
 
-export enum Notification_Target_Types {
+export enum NotificationTypes {
+  FOLLOW = 'FOLLOW',
+  FOLLOW_REQUEST = 'FOLLOW_REQUEST',
+  MESSAGE = 'MESSAGE',
+}
+
+export enum NotificationTargetTypes {
   USER = 'USER',
 }
 
@@ -212,3 +221,8 @@ export const corsOptions: CorsOptions = {
   credentials: true,
   optionsSuccessStatus: 200,
 };
+
+export function getUserEventListenerName(user: { uuid: string }) {
+  const eventName = `for-user:${user.uuid}`;
+  return eventName;
+}

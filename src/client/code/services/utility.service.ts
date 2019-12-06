@@ -1,7 +1,5 @@
-App.service('utilityService', class UtilityService {
-  constructor() {}
-
-  flashMessage = function(message, alertType = 'primary', duration = 3) {
+class UtilityService {
+  flashMessage(message: string, alertType: string = 'primary', duration: number = 3) {
     duration = parseInt(String(duration + '000'), 10);
     message = message.trim();
     const id = (Math.random().toString(36).substr(2, 34) + Date.now());
@@ -13,13 +11,13 @@ App.service('utilityService', class UtilityService {
     </div>
     `;
 
-    window.document.getElementById('notifications-box').appendChild(el);
+    WindowObj.document.getElementById('notifications-box').appendChild(el);
     const msgBox = window.document.getElementById(id);
 
     setTimeout(() => {
-      msgBox.classList.remove('ghost');
+      msgBox && msgBox.classList.remove('ghost');
       setTimeout(() => {
-        msgBox.classList.add('ghost');
+        msgBox && msgBox.classList.add('ghost');
         setTimeout(() => {
           el.remove();
         }, 100);
@@ -27,8 +25,8 @@ App.service('utilityService', class UtilityService {
     }, 100);
   }
 
-  getFormValue(ngForm) {
-    const dataObj = {};
+  getFormValue(ngForm: any) {
+    const dataObj: any = {};
 
     for (const control of ngForm.$$controls) {
       dataObj[control.$name] = control.$modelValue;
@@ -37,13 +35,11 @@ App.service('utilityService', class UtilityService {
     return dataObj;
   }
 
-  ngFormToFormData(ngForm) {
+  ngFormToFormData(ngForm: any) {
     const formElement = ngForm.$$element[0];
     const formData = new FormData(formElement);
     return formData;
   }
+}
 
-  setPageTitle(title) {
-    
-  }
-});
+App.service('utilityService', UtilityService);

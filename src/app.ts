@@ -32,6 +32,7 @@ app.use(cookie_parser());
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(express.static(paths.static));
+app.use(express.static(paths.client));
 app.use(client_sessions({
   cookieName: 'session',
   secret: APP_SECRET,

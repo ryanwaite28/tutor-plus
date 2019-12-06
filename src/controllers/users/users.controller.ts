@@ -19,6 +19,8 @@ export const UsersController: express.Router = express.Router();
 UsersController.get('/check_session', GET.check_session);
 UsersController.get('/sign_out', GET.sign_out);
 UsersController.get('/:id', GET.getUserById);
+UsersController.get('/:id/profile-info', GET.getUserProfileInfoById);
+UsersController.get('/:id/follows/:user_id', GET.checkUserFollows);
 
 
 /** POST routes */
@@ -29,6 +31,7 @@ UsersController.post('/', POST.sign_up);
 
 UsersController.put('/', PUT.sign_in);
 UsersController.put('/settings', GetSessionRequired, PUT.update_settings);
+UsersController.put('/:id/follows/:user_id', GetSessionRequired, PUT.toggleUserFollows);
 
 /** DELETE routes */
 

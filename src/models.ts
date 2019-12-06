@@ -99,6 +99,7 @@ export const Blockings = sequelize.define('blockings', {
 export const Follows = sequelize.define('follows', {
   user_id:             { type: Sequelize.INTEGER, allowNull: false, references: { model: Users, key: 'id' } },
   follows_id:          { type: Sequelize.INTEGER, allowNull: false, references: { model: Users, key: 'id' } },
+  status:              { type: Sequelize.STRING, allowNull: true, defaultValue: '' }, // either empty string or 'pending'
   date_created:        { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   uuid:                { type: Sequelize.STRING, unique: true, defaultValue: Sequelize.UUIDV1 }
 }, { freezeTableName: true, underscored: true });
@@ -125,7 +126,7 @@ export const Notifications = sequelize.define('notifications', {
   action:              { type: Sequelize.STRING, allowNull: false, defaultValue: '' },
   target_type:         { type: Sequelize.STRING, allowNull: false, defaultValue: '' },
   target_id:           { type: Sequelize.INTEGER, allowNull: false, defaultValue: 0 },
-  message:             { type: Sequelize.STRING(500), allowNull: false, defaultValue: '' },
+  message:             { type: Sequelize.STRING(500), allowNull: false, defaultValue: '' }, // suffix only
   link:                { type: Sequelize.STRING, allowNull: false, defaultValue: '' },
   read:                { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
   image_link:          { type: Sequelize.STRING(500), allowNull: true, defaultValue: '' },

@@ -200,3 +200,7 @@ footer#app-footer {
   width: 500px;
   margin-top: 10px;
 }
+
+.color-yellow {
+  color: yellow;
+}

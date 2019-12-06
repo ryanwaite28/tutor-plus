@@ -3,7 +3,7 @@ import * as Chamber from '../../../Chamber';
 import * as bcrypt from 'bcrypt-nodejs';
 import { Request, Response } from 'express';
 import {
-  Users,
+  Users, Follows, Notifications,
 } from '../../../models';
 import { Op, Model } from 'sequelize';
 import { UploadedFile } from 'express-fileupload';
@@ -77,6 +77,13 @@ export async function update_settings(
   response: Response,
 ) {
   const you = (<any> request).session.you;
+  const id = parseInt(request.params.id, 10);
+  if (id !== you.id) {
+    return response.status(400).json({
+      error: true,
+      message: 'Cannot update another user\'s profile'
+    });
+  }
   const youModel = await (<any> Users).findOne({ where: { id: you.id } });
   const data = request.body;
   const files = request.files || {};
@@ -200,7 +207,7 @@ export async function update_settings(
       return response.status(400).json({ error: true, message: 'Wallpaper is invalid file type: jpg, jpeg or png required...' });
     }
     try {
-      const wallpaperImgData: any = await upload_image(files.icon, you.icon_id);
+      const wallpaperImgData: any = await upload_image(files.wallpaper, you.wallpaper_id);
       updatesObj.wallpaper_link = wallpaperImgData.result.secure_url;
       updatesObj.wallpaper_id = wallpaperImgData.result.public_id;
     } catch (e) {
@@ -214,8 +221,76 @@ export async function update_settings(
   Object.assign((<any> request).session.you, updatesObj);
   delete (<any> request).session.you.password;
 
+  const eventName = Chamber.getUserEventListenerName((<any> request).session.you);
+  (<any> request).io.emit(eventName, {
+    eventType: Chamber.EventTypes.USER_PROFILE_UPDATED,
+    user: (<any> request).session.you,
+  });
+
   return response.status(200).json({
     user: (<any> request).session.you,
     message: `Updates saves successfully.`
   });
+}
+
+export async function toggleUserFollows(
+  request: Request,
+  response: Response,
+) {
+  const you = { ...(<any> request).session.you };
+  delete you.password;
+  const id = parseInt(request.params.id, 10);
+  if (id !== you.id) {
+    return response.status(400).json({
+      error: true,
+      message: 'User not involved in follow request: did not initiate.'
+    });
+  }
+  const user_id = parseInt(request.params.user_id, 10);
+
+  const userModel = await (<any> Users).findOne({ where: { id: user_id } });
+  const user = (<any> userModel).get({ plain: true });
+  const checkFollow = await (<any> Follows).findOne({ where: { user_id: you.id, follows_id: user_id } });
+
+  if (checkFollow) {
+    // if is following or sent request to follow, delete it.
+    const followInfo = (<any> checkFollow).get({ plain: true });
+    await (<any> checkFollow).destroy();
+    return response.status(200).json({
+      message: followInfo.status ? 'Canceled follow request' : 'Unfollowed',
+      follows: null,
+    });
+  } else {
+    // else, create it
+    const followModel = await (<any> Follows).create({
+      user_id: you.id,
+      follows_id: user_id,
+      status: !user.public ? 'pending' : '',
+    });
+    // create the notification
+    const newNotification = await (<any> Notifications).create({
+      from_id: you.id,
+      to_id: user.id,
+      action: !user.public ? Chamber.NotificationTypes.FOLLOW_REQUEST : Chamber.NotificationTypes.FOLLOW,
+      target_type: Chamber.NotificationTargetTypes.USER,
+      target_id: user.id,
+      message: 'started following you',
+      link: '',
+    });
+    // notify the user by emiting the notification
+    const eventName = Chamber.getUserEventListenerName(user);
+    (<any> request).io.emit(eventName, {
+      eventType: Chamber.EventTypes.NEW_NOTIFICATION,
+      message: !user.public ? `${you.username} requested to follow you` : `${you.username} started following you`,
+      notification: {
+        ...(<any> newNotification).get({ plain: true }),
+        user: you,
+      },
+    });
+
+    return response.status(200).json({
+      message: !user.public ? 'Follow requested' : 'Followed',
+      follows: followModel
+    });
+  }
 }

@@ -6,14 +6,14 @@
     <title>User Page | {{ user.displayname }}</title>
 
     <!-- Services -->
-    <script src="/js/services/user.service.js"></script>
+    <script src="/code/services/user.service.js"></script>
 
     <!-- Components -->
-    <script src="/js/components/userpage-card.component.js"></script>
-    <script src="/js/components/userpage-settings.component.js"></script>
+    <script src="/code/components/userpage-card.component.js"></script>
+    <script src="/code/components/userpage-settings.component.js"></script>
 
     <!-- Controller -->
-    <script src="/js/controllers/userpage.controller.js"></script>
+    <script src="/code/controllers/userpage.controller.js"></script>
   </head>
   <body ng-app="tutorPlusApp" ng-controller="userpageCtrl">
 
@@ -25,6 +25,8 @@
           <userpage-card ng-if="user"
             you="you"
             user="user"
+            follows="follows"
+            toggle-follow="$ctrl.onToggleFollow()"
             set-user-page-view="$ctrl.setUserPageView(view)"
           ></userpage-card>
         </div>
