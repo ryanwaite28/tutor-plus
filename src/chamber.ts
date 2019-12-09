@@ -41,16 +41,29 @@ export enum NotificationTypes {
   FOLLOW = 'FOLLOW',
   FOLLOW_REQUEST = 'FOLLOW_REQUEST',
   MESSAGE = 'MESSAGE',
+  REVIEW = 'REVIEW',
+  POST = 'POST',
+  POST_REACTION = 'POST_REACTION',
+  POST_COMMENT = 'POST_COMMENT',
+  POST_COMMENT_REACTION = 'POST_COMMENT_REACTION',
+  POST_COMMENT_REPLY = 'POST_COMMENT_REPLY',
+  POST_COMMENT_REPLY_REACTION = 'POST_COMMENT_REPLY_REACTION',
 }
 
 export enum NotificationTargetTypes {
   USER = 'USER',
 }
 
-export enum Content_Types {
+export enum ContentTypes {
   LIVE_SESSION = 'LIVE_SESSION',
   TUTORIAL = 'TUTORIAL',
   QNA = 'QNA',
+}
+
+export enum SubscriptionTypes {
+  POST = 'POST',
+  AVAILABILITY = 'AVAILABILITY',
+  ONLINE = 'ONLINE',
 }
 
 
@@ -121,11 +134,12 @@ export function validatePassword(password: string) {
   const hasNumbers = /\d/.test(password);
   const hasNonalphas = /\W/.test(password);
 
-  return (
-    hasMoreThanSixCharacters
-    && (hasUpperCase || hasLowerCase)
-    && hasNumbers
-  );
+  // return (
+  //   hasMoreThanSixCharacters
+  //   && (hasUpperCase || hasLowerCase)
+  //   && hasNumbers
+  // );
+  return true;
 }
 
 export function uniqueValue() {

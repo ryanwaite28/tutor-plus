@@ -19,6 +19,10 @@
 
     <app-navbar you="you"></app-navbar>
 
+    <div class="user-profile-wallpaper fill" style="background-image: url('(( you.wallpaper_link ))');">
+      <div class="dim-1"></div>
+    </div>
+
     <main class="container space-top-50">
       <div class="columns">
         <div class="column is-one-thirds">
@@ -31,6 +35,8 @@
           ></userpage-card>
         </div>
         <div class="column is-two-thirds" ng-switch="currentView">
+          <div ng-switch-when="nothing"></div>
+
           <userpage-settings ng-switch-when="settings"
             you="you"
             on-updated="$ctrl.settingsUpdated(user)"
@@ -38,6 +44,12 @@
 
           <div class="box" ng-switch-default>
             <h1 class="is-size-3">Home</h1>
+            <br />
+            <div class="content">
+              <p><strong>Bio</strong><br/> (( $ctrl.user.bio || '...' ))</p>
+              <p><strong>Tags</strong><br/> (( $ctrl.user.tags || '...' ))</p>
+              <p><strong>Subjects</strong><br/> (( $ctrl.user.subjects || '...' ))</p>
+            </div>
           </div>
         </div>
       </div>

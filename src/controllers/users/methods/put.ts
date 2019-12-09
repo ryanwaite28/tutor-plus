@@ -141,6 +141,16 @@ export async function update_settings(
   updatesObj.link_text = data.link_text;
   updatesObj.link_href = data.link_href;
 
+  if (data.hasOwnProperty('available')) {
+    updatesObj.available = data.available;
+  }
+  if (data.hasOwnProperty('public')) {
+    updatesObj.public = data.public;
+  }
+  if (data.hasOwnProperty('online')) {
+    updatesObj.online = data.online;
+  }
+
   if (you.username !== data.username) {
     const check_username = await (<any> Users).findOne({ where: { username: data.username } });
     if (check_username) {

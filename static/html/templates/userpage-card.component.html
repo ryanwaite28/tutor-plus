@@ -17,12 +17,8 @@
           <p class="subtitle is-6">@(( $ctrl.user.username ))</p>
         </div>
       </div>
-      <div class="content">
-        <p><strong>Bio</strong>: (( $ctrl.user.bio || 'bio...' ))</p>
-        <p><strong>Tags</strong>: (( $ctrl.user.tags ))</p>
-        <p><strong>Subjects</strong>: (( $ctrl.user.subjects ))</p>
-      </div>
       <div>
+        <hr />
         <p class="buttons">
           <button ng-if="$ctrl.user.id !== $ctrl.you.id" class="button is-small" ng-click="$ctrl.toggleFollow()">
             <span class="icon is-small">

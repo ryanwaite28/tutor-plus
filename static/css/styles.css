@@ -121,7 +121,7 @@ footer#app-footer {
   top: 0px;
   left: 0px;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .wallpaper-text-container {
@@ -203,4 +203,12 @@ footer#app-footer {
 
 .color-yellow {
   color: yellow;
+}
+
+.user-profile-wallpaper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 55vh;
 }

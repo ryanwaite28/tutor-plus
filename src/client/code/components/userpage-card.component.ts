@@ -7,6 +7,7 @@ class UserpageCardComponent {
   you: any;
   user: any;
   setUserPageView: any;
+  isAvailable: boolean = false;
 
   constructor(
     private $scope: any,
@@ -15,10 +16,15 @@ class UserpageCardComponent {
 
   $onInit() {
     console.log(this);
+    this.isAvailable = this.user.available;
   }
 
   setPageView(view: string) {
     this.setUserPageView({ view });
+  }
+
+  toggleAvailability() {
+    console.log(this);
   }
 }
 

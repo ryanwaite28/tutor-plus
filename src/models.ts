@@ -52,6 +52,7 @@ export const Users = sequelize.define('users', {
   certified:               { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
   verified:                { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
   online:                  { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
+  available:               { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false },
   zoomlink:                { type: Sequelize.TEXT, allowNull: true, defaultValue: '' },
   date_created:            { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   uuid:                    { type: Sequelize.STRING, unique: true, defaultValue: Sequelize.UUIDV1 }
@@ -138,7 +139,7 @@ export const Notifications = sequelize.define('notifications', {
 export const ContentSubscriptions = sequelize.define('content_subscriptions', {
   user_id:                    { type: Sequelize.INTEGER, allowNull: false, references: { model: Users, key: 'id' } },
   subscribes_to_id:           { type: Sequelize.INTEGER, allowNull: false, references: { model: Users, key: 'id' } },
-  subscribe_content_type:     { type: Sequelize.STRING, allowNull: false },
+  subscribe_type:             { type: Sequelize.STRING, allowNull: false },
   date_created:               { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   uuid:                       { type: Sequelize.STRING, defaultValue: Sequelize.UUIDV1 }
 }, { freezeTableName: true, underscored: true });

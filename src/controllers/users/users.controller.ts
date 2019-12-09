@@ -30,7 +30,7 @@ UsersController.post('/', POST.sign_up);
 /** PUT routes */
 
 UsersController.put('/', PUT.sign_in);
-UsersController.put('/settings', GetSessionRequired, PUT.update_settings);
+UsersController.put('/:id/settings', GetSessionRequired, PUT.update_settings);
 UsersController.put('/:id/follows/:user_id', GetSessionRequired, PUT.toggleUserFollows);
 
 /** DELETE routes */
