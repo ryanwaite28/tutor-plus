@@ -1,7 +1,6 @@
 class StateService {
-  setState(key: string, value: any) {
-    (<any> this)[key] = value;
-  }
+  notifications = [];
+  alerts = [];
 }
 
 App.service('stateService', StateService);

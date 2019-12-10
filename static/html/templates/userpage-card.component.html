@@ -20,7 +20,7 @@
       <div>
         <hr />
         <p class="buttons">
-          <button ng-if="$ctrl.user.id !== $ctrl.you.id" class="button is-small" ng-click="$ctrl.toggleFollow()">
+          <button ng-if="$ctrl.you && $ctrl.user.id !== $ctrl.you.id" class="button is-small" ng-click="$ctrl.toggleFollow()">
             <span class="icon is-small">
               <i class="fa" ng-class="{ 'fa-star': $ctrl.follows, 'color-yellow': $ctrl.follows, 'fa-star-o': !$ctrl.follows }"></i>
             </span>
