@@ -1,4 +1,4 @@
-import * as Chamber from '../../../Chamber';
+import * as Chamber from '../../../chamber';
 // @ts-ignore
 import * as bcrypt from 'bcrypt-nodejs';
 import { Request, Response } from 'express';
